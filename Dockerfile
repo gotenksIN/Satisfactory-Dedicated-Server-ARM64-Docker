@@ -1,49 +1,40 @@
-# Use Ubuntu 22.04 as base
-FROM ubuntu:22.04
+# Use Ubuntu 25.10 as base
+FROM ubuntu:25.10
 
 # Install cURL, Python 3, sudo, unbuffer and the package for "add-apt-get-repository"
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
-    python3 \
-    sudo \
-    expect-dev \
-    software-properties-common \
-    gnupg
-
-# Fex build dependencies
-RUN apt-get install -y --no-install-recommends \
-    squashfs-tools \
-    squashfuse \
-    git \
-    python3-setuptools \
-    pkg-config \
-    clang \
     binfmt-support \
-    systemd \
+    clang \
     cmake \
-    ninja-build \
-    libncurses6 \
-    libncurses5 \
-    libtinfo5 \
-    libtinfo6 \
-    libncurses-dev \
-    libsdl2-dev \
+    curl \
+    expect \
+    git \
     libepoxy-dev \
-    libssl-dev \
-    llvm \
-    lld \
-    qtbase5-dev \
-    qtchooser \
-    qt5-qmake \
-    qtbase5-dev-tools \
+    libncurses-dev \
     libqt5core5a \
     libqt5gui5 \
     libqt5widgets5 \
-    qtdeclarative5-dev \
-    qml-module-qtquick2 \
+    libsdl2-dev \
+    libssl-dev \
+    lld \
+    llvm \
+    ninja-build \
+    pkg-config \
+    python3 \
+    python3-setuptools \
     qml-module-qtquick-controls2 \
     qml-module-qtquick-window2 \
-    nasm
+    qml-module-qtquick2 \
+    qt5-qmake \
+    qtbase5-dev \
+    qtbase5-dev-tools \
+    qtchooser \
+    qtdeclarative5-dev \
+    software-properties-common \
+    squashfs-tools \
+    squashfuse \
+    sudo \
+    systemd
 
 # Compiling FEX
 RUN add-apt-repository -y ppa:fex-emu/fex
@@ -62,7 +53,7 @@ RUN groupadd -g 1001 steam
 RUN useradd -m -u 1001 -g 1001 steam
 
 # Install FEX root FS
-RUN sudo -u steam bash -c "unbuffer FEXRootFSFetcher -y -x"
+RUN sudo -u steam bash -c "unbuffer FEXRootFSFetcher --distro-name ubuntu --distro-version 24.04 -y -x"
 
 # Change user to steam
 USER steam
