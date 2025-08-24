@@ -1,8 +1,8 @@
-version: '3.9'
 services:
   satisfactory-server:
     image: 'satisfactory-arm64'
     container_name: 'satisfactory-server'
+    user: 1001:1001
     ports:
       - '7777:7777/udp'
       - '7777:7777/tcp'
