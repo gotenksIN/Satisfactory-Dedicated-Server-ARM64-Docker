@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl-dev \
     lld \
     llvm \
+    nasm \
     ninja-build \
     pkg-config \
     python3 \
